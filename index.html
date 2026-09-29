@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TNCalc · Prontuário de terapia nutricional</title>
+<meta name="description" content="Triagens, avaliação antropométrica, GLIM, metas e evolução clínica em um só prontuário, com fórmulas conferidas com a literatura científica. Para nutricionistas, hospitais e instituições.">
+<meta property="og:title" content="TNCalc · Prontuário de terapia nutricional">
+<meta property="og:description" content="A terapia nutricional do paciente, calculada com rigor e registrada à beira do leito.">
+<meta property="og:image" content="assets/img/tncalc-logo-escura.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#16302B">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#F6F4EE; --sand:#EDEAE1; --white:#FFFFFF; --line:#DDD8CB; --line-soft:#E3DED1;
+  --ink:#16302B; --green:#1F5C4F; --text:#3F524C; --muted:#53635E;
+  --on-dark:#CFDDD7; --on-dark-muted:#A9BFB7; --dark-line:#3E5C55; --mint:#E4EDE8;
+  --serif:'Fraunces',Georgia,serif; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --pad:96px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);background:var(--ivory);color:var(--ink);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--green)} a:hover{color:#123B32}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:1440px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+.h2{font-family:var(--serif);font-weight:500;font-size:48px;line-height:1.1;letter-spacing:-.015em}
+.h2-sm{font-family:var(--serif);font-weight:500;font-size:40px;line-height:1.12;letter-spacing:-.015em}
+.lead{font-size:18px;line-height:1.6;color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:10px;text-decoration:none;font-weight:500;font-size:16px;transition:opacity .15s}
+.btn:hover{opacity:.9}
+.btn-dark{background:var(--ink);color:#fff} .btn-dark:hover{color:#fff}
+.btn-green{background:var(--green);color:#fff} .btn-green:hover{color:#fff}
+.btn-light{background:var(--ivory);color:var(--ink);font-weight:600} .btn-light:hover{color:var(--ink)}
+.btn-outline{border:1.5px solid var(--ink);color:var(--ink)} .btn-outline:hover{color:var(--ink)}
+.store{flex-direction:column;align-items:flex-start;min-height:56px}
+.store small{font-size:11px;opacity:.8;font-weight:400} .store b{font-size:17px;font-weight:600}
+
+/* header */
+.site-header{border-bottom:1px solid var(--line);background:var(--ivory);position:sticky;top:0;z-index:10}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.brand img{width:46px;height:44px;object-fit:contain}
+.brand span{font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:-.01em}
+.nav{display:flex;align-items:center;gap:36px;font-size:15px}
+.nav a{color:var(--ink);text-decoration:none}
+.nav a.btn{color:#fff;min-height:44px;padding:0 20px;font-size:15px}
+.menu{display:none;position:relative}
+.menu summary{list-style:none;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.menu summary::-webkit-details-marker{display:none}
+.menu nav{position:absolute;right:0;top:52px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;display:flex;flex-direction:column;min-width:220px;box-shadow:0 12px 30px rgba(22,48,43,.12)}
+.menu nav a{padding:12px 14px;color:var(--ink);text-decoration:none;border-radius:8px}
+.menu nav a:hover{background:var(--ivory)}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:64px;padding-top:88px;padding-bottom:88px;align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:28px}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:64px;line-height:1.04;letter-spacing:-.02em}
+.hero p.lead{font-size:19px;max-width:560px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.note{font-size:14px;color:var(--muted)}
+.phones{position:relative;height:700px}
+.phones .halo{position:absolute;width:540px;height:540px;border-radius:50%;background:var(--mint);left:30px;top:70px}
+.phone{position:absolute;background:var(--ink);box-shadow:0 30px 60px rgba(22,48,43,.22)}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top}
+.phone-back{left:20px;top:70px;width:280px;height:570px;border-radius:40px;padding:10px}
+.phone-back img{border-radius:31px}
+.phone-front{left:250px;top:0;width:320px;height:650px;border-radius:44px;padding:11px}
+.phone-front img{border-radius:34px}
+
+/* trust */
+.trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust div{padding:28px 24px;display:flex;flex-direction:column;gap:6px;border-right:1px solid var(--line)}
+.trust div:first-child{padding-left:0} .trust div:last-child{border-right:0;padding-right:0}
+.trust strong{font-family:var(--serif);font-weight:400;font-size:22px}
+.trust span{font-size:14px;color:var(--muted)}
+
+/* features */
+.section{padding-top:112px;padding-bottom:112px}
+.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:64px;align-items:end}
+.stack{display:flex;flex-direction:column;gap:16px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:56px}
+.card{background:#fff;border:1px solid var(--line-soft);border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:14px}
+.card .num{font-family:var(--mono);font-size:13px;color:var(--green)}
+.card h3{font-family:var(--serif);font-weight:500;font-size:24px}
+.card p{font-size:15px;line-height:1.6;color:var(--text)}
+
+/* rigor */
+.rigor{background:#fff;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.rigor .wrap{display:grid;grid-template-columns:5fr 1fr 6fr;column-gap:24px}
+.rigor-left{display:flex;flex-direction:column;gap:24px}
+.rigor-left p{font-size:17px;line-height:1.65;color:var(--text)}
+.proof{margin-top:8px;padding:28px;border-radius:16px;background:var(--ivory);border:1px solid var(--line-soft);display:flex;flex-direction:column;gap:16px}
+.proof h3{font-family:var(--serif);font-weight:400;font-size:22px}
+.proof ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.proof li{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.55;color:var(--text)}
+.proof svg{flex-shrink:0;margin-top:3px}
+.refs{grid-column:3;width:100%;border-collapse:collapse;align-self:start}
+.refs th{text-align:left;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:400;padding:0 0 14px;border-bottom:2px solid var(--ink)}
+.refs td{padding:16px 0;border-bottom:1px solid var(--line-soft);font-size:15px;width:50%}
+.refs td:first-child{font-weight:500} .refs td:last-child{color:var(--text)}
+.refs tr:last-child td{border-bottom:0}
+
+/* hospitals */
+.dark{background:var(--ink);color:var(--ivory)}
+.dark .eyebrow{color:#A9CBBE}
+.dark .lead{color:var(--on-dark)}
+.hosp-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:56px}
+.hosp-grid div{border-top:1px solid var(--dark-line);padding-top:24px;display:flex;flex-direction:column;gap:10px}
+.hosp-grid h3{font-family:var(--serif);font-weight:500;font-size:22px}
+.hosp-grid p{font-size:15px;line-height:1.6;color:var(--on-dark)}
+.inst{margin-top:56px;display:flex;align-items:center;justify-content:space-between;gap:32px;padding:40px 48px;border-radius:20px;background:var(--green)}
+.inst h3{font-family:var(--serif);font-weight:400;font-size:28px}
+.inst p{font-size:16px;color:#D6E5DF;max-width:640px;line-height:1.55;margin-top:8px}
+.inst .btn{white-space:nowrap;min-height:56px;padding:0 28px}
+
+/* security */
+.sec .wrap{display:grid;grid-template-columns:4fr 1fr 7fr;column-gap:24px}
+.sec-grid{grid-column:3;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 40px}
+.sec-grid div{display:flex;flex-direction:column;gap:8px}
+.sec-grid h3{font-size:17px;font-weight:600}
+.sec-grid p{font-size:15px;line-height:1.6;color:var(--text)}
+
+/* plans */
+.plans{background:var(--sand)}
+.plans-head{display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
+.plans-head p{font-size:17px;line-height:1.6;color:var(--text);max-width:720px}
+.plan-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:48px}
+.plan{background:#fff;border:1px solid var(--line);border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:20px}
+.plan h3{font-family:var(--serif);font-weight:400;font-size:32px}
+.plan .for{font-size:15px;color:var(--muted)}
+.plan ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px;color:var(--text);line-height:1.5}
+.plan .actions{margin-top:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.plan .actions.one{grid-template-columns:1fr}
+.plan-dark{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+.plan-dark .for,.plan-dark ul{color:var(--on-dark)}
+
+/* about + faq */
+.two-col{display:grid;grid-template-columns:5fr 1fr 6fr;column-gap:24px;align-items:start}
+.two-col > :last-child{grid-column:3}
+.about-text{display:flex;flex-direction:column;gap:20px;font-size:17px;line-height:1.7;color:var(--text)}
+.faq-item{padding:24px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.faq-item:last-child{border-bottom:1px solid var(--line)}
+.faq-item h3{font-size:18px;font-weight:600}
+.faq-item p{font-size:15px;line-height:1.6;color:var(--text)}
+
+/* footer */
+.footer{background:var(--ink);color:var(--ivory)}
+.footer .wrap{padding-top:104px;padding-bottom:56px;display:flex;flex-direction:column;gap:72px}
+.footer-cta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:64px;align-items:center}
+.footer h2{font-family:var(--serif);font-weight:500;font-size:52px;line-height:1.08;letter-spacing:-.015em}
+.footer .contact{font-size:16px;color:var(--on-dark);line-height:1.6;margin-top:16px}
+.footer .contact a{color:var(--ivory)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:24px;padding-top:32px;border-top:1px solid var(--dark-line);font-size:14px;color:var(--on-dark-muted);flex-wrap:wrap}
+.footer-bottom .copy{display:flex;align-items:center;gap:12px}
+.footer-bottom .copy img{width:34px;height:32px;object-fit:contain}
+.footer-bottom nav{display:flex;gap:28px;flex-wrap:wrap}
+.footer-bottom nav a{color:var(--on-dark)}
+
+/* ---------- tablet ---------- */
+@media (max-width:1100px){
+  :root{--pad:48px}
+  .nav{gap:22px}
+  .hero h1{font-size:52px}
+  .phones{height:600px;transform:scale(.86);transform-origin:top left}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hosp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* ---------- phone ---------- */
+@media (max-width:860px){
+  :root{--pad:20px}
+  .nav{display:none} .menu{display:block}
+  .brand img{width:40px;height:38px} .brand span{font-size:21px}
+  .site-header .wrap{padding-top:12px;padding-bottom:12px}
+  .hero .wrap{grid-template-columns:1fr;gap:40px;padding-top:40px;padding-bottom:48px}
+  .hero h1{font-size:36px;line-height:1.08}
+  .hero p.lead{font-size:16px}
+  .cta-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cta-row .btn-outline{grid-column:1 / -1}
+  .note{text-align:center}
+  .phones{height:auto;transform:none;display:flex;justify-content:center}
+  .phones .halo{width:320px;height:320px;left:50%;transform:translateX(-50%);top:60px}
+  .phone-back{display:none}
+  .phone-front{position:relative;left:auto;top:auto;width:260px;height:528px;border-radius:38px;padding:9px}
+  .phone-front img{border-radius:30px}
+  .trust{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .trust div{padding:18px 12px 18px 0;border-bottom:1px solid var(--line)}
+  .trust div:nth-child(2n){border-right:0;padding-left:14px;padding-right:0}
+  .trust div:nth-child(2n+1){padding-left:0}
+  .trust div:nth-child(n+3){border-bottom:0}
+  .trust strong{font-size:17px} .trust span{font-size:13px}
+  .section{padding-top:64px;padding-bottom:64px}
+  .h2{font-size:30px;line-height:1.12} .h2-sm{font-size:28px;line-height:1.14}
+  .lead{font-size:15px}
+  .split{grid-template-columns:1fr;gap:16px}
+  .cards{grid-template-columns:1fr;gap:12px;margin-top:24px}
+  .card{padding:20px;gap:8px} .card h3{font-size:20px} .card p{font-size:14px}
+  .rigor .wrap,.sec .wrap,.two-col{grid-template-columns:1fr;row-gap:24px}
+  .refs,.sec-grid,.two-col > :last-child{grid-column:1}
+  .rigor-left p{font-size:15px}
+  .proof{padding:20px} .proof h3{font-size:19px} .proof li{font-size:14px}
+  .refs td{font-size:14px;padding:13px 0}
+  .hosp-grid{grid-template-columns:1fr;gap:18px;margin-top:24px}
+  .hosp-grid div{padding-top:16px;gap:6px} .hosp-grid h3{font-size:19px} .hosp-grid p{font-size:14px}
+  .inst{flex-direction:column;align-items:stretch;padding:24px;margin-top:24px;gap:14px}
+  .inst h3{font-size:22px} .inst p{font-size:14px}
+  .sec-grid{grid-template-columns:1fr;gap:18px}
+  .plans-head{align-items:flex-start;text-align:left}
+  .plans-head p{font-size:15px}
+  .plan-grid{grid-template-columns:1fr;gap:16px;margin-top:24px}
+  .plan{padding:24px;gap:12px} .plan h3{font-size:26px}
+  .about-text{font-size:15px}
+  .faq-item{padding:18px 0} .faq-item h3{font-size:16px} .faq-item p{font-size:14px}
+  .footer .wrap{padding-top:56px;padding-bottom:40px;gap:28px}
+  .footer-cta{grid-template-columns:1fr;gap:24px}
+  .footer h2{font-size:30px;line-height:1.12}
+  .footer-bottom{flex-direction:column-reverse;align-items:flex-start;font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#topo"><img src="assets/img/tncalc-icone-escura.png" alt="Logo TNCalc" width="46" height="44"><span>TNCalc</span></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#recursos">Recursos</a>
+      <a href="#rigor">Rigor clínico</a>
+      <a href="#hospitais">Para hospitais</a>
+      <a href="#planos">Planos</a>
+      <a href="#faq">Dúvidas</a>
+      <a class="btn btn-green" href="mailto:contato@susco.com.br?subject=TNCalc">Falar com a equipe</a>
+    </nav>
+    <details class="menu">
+      <summary aria-label="Abrir menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16302B" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+      <nav aria-label="Menu">
+        <a href="#recursos">Recursos</a>
+        <a href="#rigor">Rigor clínico</a>
+        <a href="#hospitais">Para hospitais</a>
+        <a href="#planos">Planos</a>
+        <a href="#faq">Dúvidas</a>
+        <a href="mailto:contato@susco.com.br?subject=TNCalc">Falar com a equipe</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main id="topo">
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="eyebrow">Prontuário de terapia nutricional</div>
+      <h1>A terapia nutricional do paciente, calculada com rigor e registrada à beira do leito.</h1>
+      <p class="lead">Triagens, avaliação antropométrica, metas e evolução clínica em um só prontuário, com fórmulas conferidas uma a uma com a literatura científica de referência.</p>
+      <div class="cta-row">
+        <a class="btn btn-dark store" href="https://apps.apple.com/br/app/tncalc/id6794928542"><small>Disponível na</small><b>App Store</b></a>
+        <a class="btn btn-dark store" href="https://play.google.com/store/apps/details?id=br.com.susco.tncalc"><small>Disponível no</small><b>Google Play</b></a>
+        <a class="btn btn-outline" href="#hospitais">Sou gestor(a) hospitalar →</a>
+      </div>
+      <div class="note">Comece grátis com até 3 pacientes. Sem cartão de crédito.</div>
+    </div>
+    <div class="phones">
+      <div class="halo"></div>
+      <div class="phone phone-back"><img src="assets/img/tela-triagem.jpg" alt="Tela de seleção de triagem do TNCalc: NRS-2002, MUST, MNA-SF, SARC-Global e Risco de Síndrome de Realimentação" loading="lazy"></div>
+      <div class="phone phone-front"><img src="assets/img/tela-prontuario.jpg" alt="Tela do prontuário do paciente no TNCalc com triagens, diagnóstico GLIM, evolução, metas, consumo alimentar e resumo clínico"></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="trust">
+    <div><strong>App Store e Google Play</strong><span>Publicado e aprovado nas duas lojas oficiais.</span></div>
+    <div><strong>Base científica</strong><span>Cada fórmula conferida com a literatura de referência.</span></div>
+    <div><strong>Dados no Brasil</strong><span>Servidores em São Paulo, acesso restrito por usuário.</span></div>
+    <div><strong>LGPD e GDPR</strong><span>Política de privacidade pública e exclusão de conta no app.</span></div>
+  </div>
+</div>
+
+<section id="recursos" class="section">
+  <div class="wrap">
+    <div class="split">
+      <div class="stack">
+        <div class="eyebrow">Recursos</div>
+        <h2 class="h2">Tudo o que a nutrição clínica registra, num fluxo só.</h2>
+      </div>
+      <p class="lead">Da triagem na admissão ao resumo de alta: o TNCalc substitui planilhas, calculadoras avulsas e anotações em papel por um prontuário organizado por paciente.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><div class="num">01</div><h3>Triagens nutricionais</h3><p>NRS-2002, MUST, MNA-SF, STRONGkids, SARC-Global e Risco de Síndrome de Realimentação, com pontuação e classificação automáticas.</p></article>
+      <article class="card"><div class="num">02</div><h3>Diagnóstico GLIM</h3><p>Critérios fenotípicos e etiológicos com classificação de gravidade (estágio 1 e 2), segundo o consenso ESPEN.</p></article>
+      <article class="card"><div class="num">03</div><h3>Avaliação antropométrica</h3><p>Estatura e peso estimados, IMC por faixa etária, perda de peso, adequação de CB, CP, amputações e dinamometria.</p></article>
+      <article class="card"><div class="num">04</div><h3>Curvas de crescimento</h3><p>Pediatria de 1 mês a 17 anos, com percentis OMS 2006/2007 e classificação conforme a norma SISVAN.</p></article>
+      <article class="card"><div class="num">05</div><h3>Metas e evolução</h3><p>Metas calóricas, proteicas e hídricas, consumo alimentar por refeição e evolução clínica em formato de diário.</p></article>
+      <article class="card"><div class="num">06</div><h3>Resumo clínico em PDF</h3><p>Histórico completo do paciente, com assinatura e número do CRN, pronto para anexar ao prontuário da instituição.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="rigor" class="section rigor">
+  <div class="wrap">
+    <div class="rigor-left">
+      <div class="eyebrow">Rigor clínico</div>
+      <h2 class="h2">Nenhuma fórmula entra no app sem referência e sem revisão.</h2>
+      <p>Todas as equações e protocolos foram conferidos página a página com a literatura de origem: manuais de triagem, livros de nutrição clínica e documentos oficiais da OMS, NICE, FAO/WHO/UNU e DRI.</p>
+      <div class="proof">
+        <h3>Validado pela literatura, não por suposição</h3>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5C4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Cada cálculo segue a equação e os pontos de corte da publicação original.</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5C4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Faixas etárias e critérios de uso respeitados em cada protocolo.</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5C4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Revisão clínica antes de qualquer nova funcionalidade entrar no app.</li>
+        </ul>
+      </div>
+    </div>
+    <table class="refs">
+      <thead><tr><th>Cálculo / protocolo</th><th>Referência</th></tr></thead>
+      <tbody>
+        <tr><td>NRS-2002</td><td>Kondrup, ESPEN 2003</td></tr>
+        <tr><td>MUST</td><td>Stratton, 2004</td></tr>
+        <tr><td>MNA-SF</td><td>Kaiser, 2009</td></tr>
+        <tr><td>STRONGkids</td><td>Carvalho, 2013</td></tr>
+        <tr><td>Síndrome de Realimentação</td><td>NICE CG32</td></tr>
+        <tr><td>GLIM</td><td>Consenso ESPEN</td></tr>
+        <tr><td>Estatura e peso estimados</td><td>Chumlea, 1985 e 1994</td></tr>
+        <tr><td>IMC adulto e idoso</td><td>OMS · Lipschitz</td></tr>
+        <tr><td>Adequação de CB</td><td>Frisancho, 1990</td></tr>
+        <tr><td>Amputações</td><td>Osterkamp, 1995</td></tr>
+        <tr><td>Curvas pediátricas</td><td>OMS 2006/2007 · SISVAN</td></tr>
+        <tr><td>Necessidade hídrica pediátrica</td><td>Holliday-Segar, 1957</td></tr>
+        <tr><td>Energia e proteína pediátricas</td><td>FAO/WHO/UNU · DRI 2005</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="hospitais" class="section dark">
+  <div class="wrap">
+    <div class="split">
+      <div class="stack">
+        <div class="eyebrow">Para hospitais e instituições</div>
+        <h2 class="h2">Padronize a terapia nutricional da sua equipe.</h2>
+      </div>
+      <p class="lead">Hospitais, UTIs, home care, ILPIs e ambulatórios podem oferecer à equipe de nutrição a mesma ferramenta, com os mesmos protocolos validados e documentação organizada de cada paciente.</p>
+    </div>
+    <div class="hosp-grid">
+      <div><h3>Mesmos protocolos para toda a equipe</h3><p>Todos os profissionais usam as mesmas fórmulas e triagens validadas, sem variação de planilha para planilha.</p></div>
+      <div><h3>Histórico organizado por paciente</h3><p>Linha do tempo com avaliações, triagens, metas e evolução, todas datadas.</p></div>
+      <div><h3>Documentação pronta para o prontuário</h3><p>Resumo clínico em PDF com identificação profissional, pronto para anexar ao prontuário eletrônico do hospital.</p></div>
+      <div><h3>Sem instalação de TI</h3><p>Roda no celular ou tablet da equipe. Nada para instalar nos servidores do hospital, e os dados ficam armazenados no Brasil.</p></div>
+    </div>
+    <div class="inst">
+      <div><h3>Plano institucional</h3><p>Licenças para a equipe de nutrição, com implantação acompanhada e condições sob consulta.</p></div>
+      <a class="btn btn-light" href="mailto:contato@susco.com.br?subject=Demonstra%C3%A7%C3%A3o%20TNCalc">Agendar demonstração</a>
+    </div>
+  </div>
+</section>
+
+<section class="section sec">
+  <div class="wrap">
+    <div class="stack">
+      <div class="eyebrow">Segurança e privacidade</div>
+      <h2 class="h2-sm">Dado de paciente é dado sensível. Tratamos assim.</h2>
+    </div>
+    <div class="sec-grid">
+      <div><h3>Hospedagem no Brasil</h3><p>Banco de dados em nuvem Google na região de São Paulo.</p></div>
+      <div><h3>Acesso isolado por profissional</h3><p>Cada nutricionista enxerga apenas os próprios pacientes, com regras no servidor.</p></div>
+      <div><h3>LGPD e GDPR</h3><p>Política de privacidade pública, válida no Brasil e na União Europeia.</p></div>
+      <div><h3>Exclusão definitiva</h3><p>A conta e todos os dados podem ser apagados pelo próprio usuário, dentro do app.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="planos" class="section plans">
+  <div class="wrap">
+    <div class="plans-head">
+      <div class="eyebrow">Planos</div>
+      <h2 class="h2">Comece grátis. Conheça tudo o que o TNCalc resolve.</h2>
+      <p>Experimente com seus próprios pacientes ou agende uma demonstração completa com a nossa equipe.</p>
+    </div>
+    <div class="plan-grid">
+      <article class="plan">
+        <h3>Gratuito</h3>
+        <div class="for">Para conhecer o app no dia a dia.</div>
+        <ul><li>Até 3 pacientes com prontuário completo</li><li>Uso limitado das Calculadoras Rápidas</li><li>Todas as triagens e avaliações</li></ul>
+        <div class="actions">
+          <a class="btn btn-outline" href="https://apps.apple.com/br/app/tncalc/id6794928542">App Store</a>
+          <a class="btn btn-outline" href="https://play.google.com/store/apps/details?id=br.com.susco.tncalc">Google Play</a>
+        </div>
+      </article>
+      <article class="plan">
+        <h3>Pro</h3>
+        <div class="for">Para o nutricionista que acompanha muitos pacientes.</div>
+        <ul><li>Pacientes ilimitados</li><li>Calculadoras Rápidas ilimitadas</li><li>Assinatura mensal ou anual, direto no app</li></ul>
+        <div class="actions one"><a class="btn btn-green" href="mailto:contato@susco.com.br?subject=Demonstra%C3%A7%C3%A3o%20TNCalc">Solicitar demonstração</a></div>
+      </article>
+      <article class="plan plan-dark">
+        <h3>Institucional</h3>
+        <div class="for">Para hospitais, clínicas e equipes de nutrição.</div>
+        <ul><li>Licenças para toda a equipe</li><li>Implantação acompanhada</li><li>Condições sob consulta</li></ul>
+        <div class="actions one"><a class="btn btn-light" href="mailto:contato@susco.com.br?subject=Demonstra%C3%A7%C3%A3o%20TNCalc">Agendar demonstração</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap two-col">
+    <div class="stack">
+      <div class="eyebrow">Quem desenvolve</div>
+      <h2 class="h2-sm">Nutrição clínica e engenharia de software, lado a lado.</h2>
+    </div>
+    <div class="about-text">
+      <p>O TNCalc nasceu da rotina real da nutrição clínica: a necessidade de calcular rápido, com precisão, e registrar tudo sem perder tempo à beira do leito.</p>
+      <p>É desenvolvido pela Susco, Support Soluções Corporativas Ltda, empresa brasileira de tecnologia com mais de 26 anos de experiência em automação, sistemas e suporte técnico. A validação clínica é conduzida por nutricionista mestre em Nutrição.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section" style="padding-top:0">
+  <div class="wrap two-col">
+    <h2 class="h2-sm">Dúvidas frequentes</h2>
+    <div>
+      <div class="faq-item"><h3>O TNCalc substitui o prontuário eletrônico do hospital?</h3><p>Não. Ele organiza a terapia nutricional e gera um resumo em PDF que pode ser anexado ao prontuário oficial da instituição.</p></div>
+      <div class="faq-item"><h3>Funciona para pediatria?</h3><p>Sim. Há STRONGkids, curvas de crescimento OMS e metas pediátricas de energia, proteína e hidratação.</p></div>
+      <div class="faq-item"><h3>Onde ficam os dados dos pacientes?</h3><p>Em servidores no Brasil, acessíveis somente pelo profissional que os cadastrou, conforme a LGPD.</p></div>
+      <div class="faq-item"><h3>Posso testar antes de assinar?</h3><p>Sim. O plano gratuito permite acompanhar até 3 pacientes com todas as ferramentas clínicas.</p></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="contato" class="footer">
+  <div class="wrap">
+    <div class="footer-cta">
+      <h2>Leve o TNCalc para a sua rotina ou para a sua equipe.</h2>
+      <div>
+        <div class="cta-row">
+          <a class="btn btn-light store" href="https://apps.apple.com/br/app/tncalc/id6794928542"><small>Disponível na</small><b>App Store</b></a>
+          <a class="btn btn-light store" href="https://play.google.com/store/apps/details?id=br.com.susco.tncalc"><small>Disponível no</small><b>Google Play</b></a>
+        </div>
+        <p class="contact">Hospitais e instituições: <a href="mailto:contato@susco.com.br">contato@susco.com.br</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="copy"><img src="assets/img/tncalc-icone-clara.png" alt="Logo TNCalc" width="34" height="32">© 2026 Susco · Support Soluções Corporativas Ltda</div>
+      <nav aria-label="Rodapé">
+        <a href="#">Termos de uso</a>
+        <a href="https://susco.com.br/tncalc/privacidade.html">Política de privacidade</a>
+        <a href="#">Instagram</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Fecha o menu mobile ao tocar num link
+  document.querySelectorAll('.menu nav a').forEach(function(a){
+    a.addEventListener('click', function(){ a.closest('details').removeAttribute('open'); });
+  });
+</script>
+</body>
+</html>
