@@ -1,0 +1,70 @@
+:root{
+  --bg:#F3F6F9; --white:#FFFFFF; --line:#D3DDE7; --line-soft:#DEE6EE;
+  --ink:#0F2C3F; --teal:#0E7C74; --text:#3C5064; --muted:#52667B;
+  --on-dark:#C8D6E3; --on-dark-muted:#A2B5C8; --dark-line:#2E4A60;
+  --serif:'Fraunces',Georgia,serif; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:var(--teal)} a:hover{color:#0A5F58}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:1440px;margin:0 auto;padding:0 96px}
+
+.site-header{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:10}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.brand img{width:44px;height:44px;border-radius:10px}
+.brand span{font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:-.01em}
+.back{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:8px;border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;font-weight:500;font-size:15px}
+.back:hover{color:var(--ink);background:#fff}
+
+.doc{max-width:820px;margin:0 auto;padding:72px 24px 112px}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.doc h1{font-family:var(--serif);font-weight:500;font-size:52px;line-height:1.08;letter-spacing:-.015em;margin-top:16px}
+.updated{margin-top:16px;font-size:15px;color:var(--muted)}
+.intro{margin-top:28px;font-size:18px;line-height:1.65;color:var(--text)}
+.toc{margin-top:40px;padding:24px 28px;background:var(--white);border:1px solid var(--line-soft);border-radius:16px}
+.toc strong{display:block;font-size:14px;font-weight:600;margin-bottom:12px}
+.toc ol{margin:0;padding-left:20px;columns:2;column-gap:32px;font-size:15px;line-height:1.9}
+.toc a{color:var(--text);text-decoration:none} .toc a:hover{color:var(--teal);text-decoration:underline}
+.doc section{margin-top:56px;scroll-margin-top:96px}
+.doc h2{font-family:var(--serif);font-weight:500;font-size:28px;line-height:1.2;display:flex;gap:14px;align-items:baseline}
+.doc h2 .n{font-family:var(--mono);font-size:15px;color:var(--teal);font-weight:500;min-width:28px}
+.doc section p,.doc section li{font-size:17px;line-height:1.7;color:var(--text)}
+.doc section p{margin-top:16px}
+.doc section ul{margin:16px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
+.doc strong{color:var(--ink);font-weight:600}
+.callout{margin-top:20px;padding:20px 24px;border-radius:14px;background:#E6F2F1;border:1px solid #BFDDDA;color:var(--ink)!important}
+.table-wrap{margin-top:20px;overflow-x:auto;border:1px solid var(--line-soft);border-radius:14px;background:#fff}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+th{text-align:left;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:400;padding:14px 18px;border-bottom:1px solid var(--line)}
+td{padding:16px 18px;border-bottom:1px solid var(--line-soft);color:var(--text);line-height:1.55;vertical-align:top}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+.contact-card{margin-top:20px;padding:24px;border-radius:14px;background:#fff;border:1px solid var(--line-soft);font-size:17px;line-height:1.7;color:var(--text)}
+
+.footer{background:var(--ink);color:#F3F6F9}
+.footer .wrap{padding-top:40px;padding-bottom:40px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:14px;color:var(--on-dark-muted)}
+.footer .copy{display:flex;align-items:center;gap:12px}
+.footer .copy img{width:34px;height:32px;object-fit:contain}
+.footer nav{display:flex;gap:28px;flex-wrap:wrap}
+.footer nav a{color:var(--on-dark)}
+
+@media (max-width:860px){
+  .wrap{padding:0 20px}
+  .site-header .wrap{padding-top:12px;padding-bottom:12px}
+  .brand img{width:40px;height:40px} .brand span{font-size:21px}
+  .back{padding:0 14px;font-size:14px}
+  .doc{padding:40px 20px 72px}
+  .doc h1{font-size:34px}
+  .intro{font-size:16px}
+  .toc ol{columns:1}
+  .doc section{margin-top:40px}
+  .doc h2{font-size:22px}
+  .doc section p,.doc section li{font-size:15px}
+  .footer .wrap{flex-direction:column-reverse;align-items:flex-start;font-size:13px}
+}
+
+.ig-link{display:inline-flex;align-items:center;gap:8px}
+.ig-link img{width:18px;height:18px}

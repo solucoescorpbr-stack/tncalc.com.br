@@ -7,9 +7,9 @@
 <meta name="description" content="Triagens, avaliação antropométrica, GLIM, metas e evolução clínica em um só prontuário, com fórmulas conferidas com a literatura científica. Para nutricionistas, hospitais e instituições.">
 <meta property="og:title" content="TNCalc · Prontuário de terapia nutricional">
 <meta property="og:description" content="A terapia nutricional do paciente, calculada com rigor e registrada à beira do leito.">
-<meta property="og:image" content="assets/img/tncalc-logo-escura.png">
+<meta property="og:image" content="assets/img/tncalc-app-icone.png">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#16302B">
+<meta name="theme-color" content="#0F2C3F">
 <link rel="icon" type="image/png" href="assets/img/favicon.png">
 <link rel="apple-touch-icon" href="assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,9 +17,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ivory:#F6F4EE; --sand:#EDEAE1; --white:#FFFFFF; --line:#DDD8CB; --line-soft:#E3DED1;
-  --ink:#16302B; --green:#1F5C4F; --text:#3F524C; --muted:#53635E;
-  --on-dark:#CFDDD7; --on-dark-muted:#A9BFB7; --dark-line:#3E5C55; --mint:#E4EDE8;
+  --ivory:#F3F6F9; --sand:#E6EDF4; --white:#FFFFFF; --line:#D3DDE7; --line-soft:#DEE6EE;
+  --ink:#0F2C3F; --green:#0E7C74; --text:#3C5064; --muted:#52667B;
+  --on-dark:#C8D6E3; --on-dark-muted:#A2B5C8; --dark-line:#2E4A60; --mint:#DCEBF1;
   --serif:'Fraunces',Georgia,serif; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
   --pad:96px;
 }
@@ -27,7 +27,7 @@
 html{scroll-behavior:smooth}
 body{margin:0;font-family:var(--sans);background:var(--ivory);color:var(--ink);-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
-a{color:var(--green)} a:hover{color:#123B32}
+a{color:var(--green)} a:hover{color:#0A5F58}
 h1,h2,h3,p{margin:0}
 .wrap{max-width:1440px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
 .eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
@@ -47,7 +47,7 @@ h1,h2,h3,p{margin:0}
 .site-header{border-bottom:1px solid var(--line);background:var(--ivory);position:sticky;top:0;z-index:10}
 .site-header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
-.brand img{width:46px;height:44px;object-fit:contain}
+.brand img{width:44px;height:44px;border-radius:10px}
 .brand span{font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:-.01em}
 .nav{display:flex;align-items:center;gap:36px;font-size:15px}
 .nav a{color:var(--ink);text-decoration:none}
@@ -55,7 +55,7 @@ h1,h2,h3,p{margin:0}
 .menu{display:none;position:relative}
 .menu summary{list-style:none;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .menu summary::-webkit-details-marker{display:none}
-.menu nav{position:absolute;right:0;top:52px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;display:flex;flex-direction:column;min-width:220px;box-shadow:0 12px 30px rgba(22,48,43,.12)}
+.menu nav{position:absolute;right:0;top:52px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;display:flex;flex-direction:column;min-width:220px;box-shadow:0 12px 30px rgba(15,44,63,.12)}
 .menu nav a{padding:12px 14px;color:var(--ink);text-decoration:none;border-radius:8px}
 .menu nav a:hover{background:var(--ivory)}
 
@@ -68,7 +68,7 @@ h1,h2,h3,p{margin:0}
 .note{font-size:14px;color:var(--muted)}
 .phones{position:relative;height:700px}
 .phones .halo{position:absolute;width:540px;height:540px;border-radius:50%;background:var(--mint);left:30px;top:70px}
-.phone{position:absolute;background:var(--ink);box-shadow:0 30px 60px rgba(22,48,43,.22)}
+.phone{position:absolute;background:var(--ink);box-shadow:0 30px 60px rgba(15,44,63,.22)}
 .phone img{width:100%;height:100%;object-fit:cover;object-position:top}
 .phone-back{left:20px;top:70px;width:280px;height:570px;border-radius:40px;padding:10px}
 .phone-back img{border-radius:31px}
@@ -110,15 +110,15 @@ h1,h2,h3,p{margin:0}
 
 /* hospitals */
 .dark{background:var(--ink);color:var(--ivory)}
-.dark .eyebrow{color:#A9CBBE}
+.dark .eyebrow{color:#86D1C6}
 .dark .lead{color:var(--on-dark)}
 .hosp-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:56px}
 .hosp-grid div{border-top:1px solid var(--dark-line);padding-top:24px;display:flex;flex-direction:column;gap:10px}
 .hosp-grid h3{font-family:var(--serif);font-weight:500;font-size:22px}
 .hosp-grid p{font-size:15px;line-height:1.6;color:var(--on-dark)}
-.inst{margin-top:56px;display:flex;align-items:center;justify-content:space-between;gap:32px;padding:40px 48px;border-radius:20px;background:var(--green)}
+.inst{margin-top:56px;display:flex;align-items:center;justify-content:space-between;gap:32px;padding:40px 48px;border-radius:20px;background:#28548A}
 .inst h3{font-family:var(--serif);font-weight:400;font-size:28px}
-.inst p{font-size:16px;color:#D6E5DF;max-width:640px;line-height:1.55;margin-top:8px}
+.inst p{font-size:16px;color:#D4E1EF;max-width:640px;line-height:1.55;margin-top:8px}
 .inst .btn{white-space:nowrap;min-height:56px;padding:0 28px}
 
 /* security */
@@ -177,7 +177,7 @@ h1,h2,h3,p{margin:0}
 @media (max-width:860px){
   :root{--pad:20px}
   .nav{display:none} .menu{display:block}
-  .brand img{width:40px;height:38px} .brand span{font-size:21px}
+  .brand img{width:40px;height:40px} .brand span{font-size:21px}
   .site-header .wrap{padding-top:12px;padding-bottom:12px}
   .hero .wrap{grid-template-columns:1fr;gap:40px;padding-top:40px;padding-bottom:48px}
   .hero h1{font-size:36px;line-height:1.08}
@@ -223,29 +223,40 @@ h1,h2,h3,p{margin:0}
   .footer h2{font-size:30px;line-height:1.12}
   .footer-bottom{flex-direction:column-reverse;align-items:flex-start;font-size:13px}
 }
+/* instagram */
+.ig-icon{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;transition:transform .15s}
+.ig-icon img{width:30px;height:30px}
+.ig-icon:hover{transform:scale(1.08)}
+.ig-pill{display:inline-flex;align-items:center;gap:10px;margin-top:20px;min-height:48px;padding:0 20px;border-radius:99px;border:1.5px solid var(--on-dark-muted);color:var(--ivory);text-decoration:none;font-size:15px}
+.ig-pill:hover{border-color:var(--on-dark);color:#fff}
+.ig-link{display:inline-flex;align-items:center;gap:8px}
+.ig-link img{width:18px;height:18px}
+.ig-pill img{width:22px;height:22px}
 </style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="#topo"><img src="assets/img/tncalc-icone-escura.png" alt="Logo TNCalc" width="46" height="44"><span>TNCalc</span></a>
+    <a class="brand" href="#topo"><img src="assets/img/tncalc-app-icone.png" alt="Logo TNCalc" width="44" height="44"><span>TNCalc</span></a>
     <nav class="nav" aria-label="Principal">
       <a href="#recursos">Recursos</a>
       <a href="#rigor">Rigor clínico</a>
       <a href="#hospitais">Para hospitais</a>
       <a href="#planos">Planos</a>
       <a href="#faq">Dúvidas</a>
+      <a class="ig-icon" href="https://www.instagram.com/tncalc/" aria-label="Instagram do TNCalc (@tncalc)" title="Instagram @tncalc"><img src="assets/img/instagram.png" alt="" width="20" height="20"></a>
       <a class="btn btn-green" href="mailto:contato@susco.com.br?subject=TNCalc">Falar com a equipe</a>
     </nav>
     <details class="menu">
-      <summary aria-label="Abrir menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16302B" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+      <summary aria-label="Abrir menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F2C3F" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
       <nav aria-label="Menu">
         <a href="#recursos">Recursos</a>
         <a href="#rigor">Rigor clínico</a>
         <a href="#hospitais">Para hospitais</a>
         <a href="#planos">Planos</a>
         <a href="#faq">Dúvidas</a>
+        <a href="https://www.instagram.com/tncalc/">Instagram @tncalc</a>
         <a href="mailto:contato@susco.com.br?subject=TNCalc">Falar com a equipe</a>
       </nav>
     </details>
@@ -313,9 +324,9 @@ h1,h2,h3,p{margin:0}
       <div class="proof">
         <h3>Validado pela literatura, não por suposição</h3>
         <ul>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5C4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Cada cálculo segue a equação e os pontos de corte da publicação original.</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5C4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Faixas etárias e critérios de uso respeitados em cada protocolo.</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F5C4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Revisão clínica antes de qualquer nova funcionalidade entrar no app.</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0E7C74" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Cada cálculo segue a equação e os pontos de corte da publicação original.</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0E7C74" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Faixas etárias e critérios de uso respeitados em cada protocolo.</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0E7C74" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Revisão clínica antes de qualquer nova funcionalidade entrar no app.</li>
         </ul>
       </div>
     </div>
@@ -447,14 +458,15 @@ h1,h2,h3,p{margin:0}
           <a class="btn btn-light store" href="https://play.google.com/store/apps/details?id=br.com.susco.tncalc"><small>Disponível no</small><b>Google Play</b></a>
         </div>
         <p class="contact">Hospitais e instituições: <a href="mailto:contato@susco.com.br">contato@susco.com.br</a></p>
+        <a class="ig-pill" href="https://www.instagram.com/tncalc/"><img src="assets/img/instagram.png" alt="" width="20" height="20"><span>Siga <b>@tncalc</b> no Instagram</span></a>
       </div>
     </div>
     <div class="footer-bottom">
       <div class="copy"><img src="assets/img/tncalc-icone-clara.png" alt="Logo TNCalc" width="34" height="32">© 2026 Susco · Support Soluções Corporativas Ltda</div>
       <nav aria-label="Rodapé">
-        <a href="#">Termos de uso</a>
-        <a href="https://susco.com.br/tncalc/privacidade.html">Política de privacidade</a>
-        <a href="#">Instagram</a>
+        <a href="termos.html">Termos de uso</a>
+        <a href="privacidade.html">Política de privacidade</a>
+        <a class="ig-link" href="https://www.instagram.com/tncalc/"><img src="assets/img/instagram.png" alt="" width="20" height="20">Instagram @tncalc</a>
       </nav>
     </div>
   </div>
